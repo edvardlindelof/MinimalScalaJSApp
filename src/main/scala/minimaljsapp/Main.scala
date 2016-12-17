@@ -21,9 +21,16 @@ object Main extends JSApp {
     def changeState(s: State): Callback = $.setState(s)
     def render(s: State) =
       <.div(
-        <.ul(
-          <.li("CompA", ^.onClick --> changeState(SomeComp)),
-          <.li("CompB", ^.onClick --> changeState(SomeOtherComp))),
+        <.nav(
+          ^.className := "navbar navbar-static-top navbar-default",
+          <.ul(
+            ^.className := "nav_navbar-nav",
+            <.li(<.span("CompA"),
+                ^.onClick --> changeState(SomeComp),
+                ^.className := "btn navbar-btn"),
+            <.li("CompB",
+                ^.onClick --> changeState(SomeOtherComp),
+                ^.className := "btn navbar-btn"))),
         s()
       )
   }
