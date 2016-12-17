@@ -15,24 +15,26 @@ object Main extends JSApp {
   }
 
   // the type of our components after calling build
-  type State = ReactComponentC.ConstProps[Unit, Unit, Unit, org.scalajs.dom.raw.Element]
+  type Comp = ReactComponentC.ConstProps[Unit, Unit, Unit, org.scalajs.dom.raw.Element]
 
-  class Backend($: BackendScope[Unit, State]) {
-    def changeState(s: State): Callback = $.setState(s)
-    def render(s: State) =
+  class Backend($: BackendScope[Unit, Comp]) {
+    def changeState(s: Comp): Callback = $.setState(s)
+    def render(s: Comp) =
       <.div(
         <.nav(
           ^.className := "navbar navbar-static-top navbar-default",
           <.ul(
             ^.className := "nav_navbar-nav",
-            <.li(<.span("CompA"),
-                ^.onClick --> changeState(SomeComp),
-                ^.className := "btn navbar-btn"),
-            <.li("CompB",
-                ^.onClick --> changeState(SomeOtherComp),
-                ^.className := "btn navbar-btn"))),
+            MenuButton(MenuBtnProps("Comp A", SomeComp)),
+            MenuButton(MenuBtnProps("Comp B", SomeOtherComp)))),
         s()
       )
+      case class MenuBtnProps(text: String, comp: Comp)
+      val MenuButton = ReactComponentB[MenuBtnProps]("MenuButton")
+        .render_P(p => <.li(p.text,
+                            ^.onClick --> changeState(p.comp),
+                            ^.className := "btn navbar-btn"))
+        .build
   }
 
   val RootComp = ReactComponentB[Unit]("Example")
