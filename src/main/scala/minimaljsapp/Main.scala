@@ -12,7 +12,12 @@ object Main extends JSApp {
   def main(): Unit = {
     println("GoudaOst")
     // TODO put some root component in here
-    ReactDOM.render(<.h1("GoudaOst"), document.getElementById("AppRoot"))
+    ReactDOM.render(rootComponent("hello from rootComp"), document.getElementById("AppRoot"))
   }
+
+  val rootComponent = ReactComponentB[String]("RootComponent")
+    .render_P(str => <.h1(str))
+    .build
+
 
 }
