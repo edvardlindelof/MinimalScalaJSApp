@@ -26,7 +26,8 @@ object Main extends JSApp {
           <.ul(
             ^.className := "nav_navbar-nav",
             MenuButton(MenuBtnProps("Comp A", SomeComp)),
-            MenuButton(MenuBtnProps("Comp B", SomeOtherComp)))),
+            MenuButton(MenuBtnProps("Comp B", SomeOtherComp)),
+            MenuButton(MenuBtnProps("D3 Test", D3Test())))),
         s()
       )
       case class MenuBtnProps(text: String, comp: Comp)

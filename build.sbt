@@ -5,7 +5,8 @@ name := "Minimal ScalaJS App"
 scalaVersion := "2.11.8"
 
 libraryDependencies ++= Seq(
-  "com.github.japgolly.scalajs-react" %%% "core" % "0.11.3"
+  "com.github.japgolly.scalajs-react" %%% "core" % "0.11.3",
+  "org.singlespaced" %%% "scalajs-d3" % "0.3.3"
 )
 
 jsDependencies ++= Seq(
