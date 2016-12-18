@@ -1,4 +1,4 @@
-package minimaljsapp
+package minimalscalajsapp
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._

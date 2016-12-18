@@ -1,4 +1,4 @@
-package minimaljsapp
+package minimalscalajsapp
 
 import scala.scalajs.js.JSApp
 import scala.scalajs.js.annotation.JSExport
@@ -11,7 +11,7 @@ object Main extends JSApp {
 
   @JSExport
   def main(): Unit = {
-    println("GoudaOst")
+    println("printed with println")
     ReactDOM.render(RootComp(), document.getElementById("AppRoot"))
   }
 
