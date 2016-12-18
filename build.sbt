@@ -32,5 +32,9 @@ jsDependencies ++= Seq(
     minified "bootstrap.min.js"
     dependsOn "jquery.js",
 
+  "org.webjars" % "json-editor" % "0.7.21"
+    / "jsoneditor.js"
+    minified "jsoneditor.min.js",
+
   ProvidedJS / "pointlessJSFunctions.js"
 )

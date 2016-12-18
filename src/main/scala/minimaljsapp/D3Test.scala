@@ -7,6 +7,7 @@ import org.singlespaced.d3js.Ops._
 import scala.scalajs.js.{Array => JSArray}
 
 object D3Test {
+  // TODO not that important but ideally we should get rid of the raw html ref
   private val d3divUglyCustomId = "d3divUglyCustomId"
   def apply() = component()
   private val component = ReactComponentB[Unit]("D3Test")

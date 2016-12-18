@@ -29,6 +29,7 @@ object Main extends JSApp {
             MenuButton(MenuBtnProps("Comp A", SomeComp())),
             MenuButton(MenuBtnProps("Comp B", SomeOtherComp())),
             MenuButton(MenuBtnProps("Facade Test", FacadeTest())),
+            MenuButton(MenuBtnProps("json Editor Test", JSONEditorTest())),
             MenuButton(MenuBtnProps("D3 Test", D3Test())))),
         s
       )
