@@ -30,5 +30,7 @@ jsDependencies ++= Seq(
   "org.webjars" % "bootstrap" % "3.3.7"
     / "bootstrap.js"
     minified "bootstrap.min.js"
-    dependsOn "jquery.js"
+    dependsOn "jquery.js",
+
+  ProvidedJS / "pointlessJSFunctions.js"
 )

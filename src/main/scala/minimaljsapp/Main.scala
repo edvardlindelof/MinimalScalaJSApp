@@ -28,6 +28,7 @@ object Main extends JSApp {
             ^.className := "nav_navbar-nav",
             MenuButton(MenuBtnProps("Comp A", SomeComp())),
             MenuButton(MenuBtnProps("Comp B", SomeOtherComp())),
+            MenuButton(MenuBtnProps("Facade Test", FacadeTest())),
             MenuButton(MenuBtnProps("D3 Test", D3Test())))),
         s
       )
