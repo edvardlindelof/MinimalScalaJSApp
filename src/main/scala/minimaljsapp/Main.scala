@@ -5,6 +5,7 @@ import scala.scalajs.js.annotation.JSExport
 import org.scalajs.dom.document
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
+import org.scalajs.dom.raw.Element
 
 object Main extends JSApp {
 
@@ -14,8 +15,8 @@ object Main extends JSApp {
     ReactDOM.render(RootComp(), document.getElementById("AppRoot"))
   }
 
-  // the type of our components after calling build
-  type Comp = ReactComponentC.ConstProps[Unit, Unit, Unit, org.scalajs.dom.raw.Element]
+  // the type of our components here
+  type Comp = ReactComponentU[Unit, Unit, Unit, Element]
 
   class Backend($: BackendScope[Unit, Comp]) {
     def changeState(s: Comp): Callback = $.setState(s)
@@ -25,10 +26,10 @@ object Main extends JSApp {
           ^.className := "navbar navbar-static-top navbar-default",
           <.ul(
             ^.className := "nav_navbar-nav",
-            MenuButton(MenuBtnProps("Comp A", SomeComp)),
-            MenuButton(MenuBtnProps("Comp B", SomeOtherComp)),
+            MenuButton(MenuBtnProps("Comp A", SomeComp())),
+            MenuButton(MenuBtnProps("Comp B", SomeOtherComp())),
             MenuButton(MenuBtnProps("D3 Test", D3Test())))),
-        s()
+        s
       )
       case class MenuBtnProps(text: String, comp: Comp)
       val MenuButton = ReactComponentB[MenuBtnProps]("MenuButton")
@@ -39,7 +40,7 @@ object Main extends JSApp {
   }
 
   val RootComp = ReactComponentB[Unit]("Example")
-    .initialState(SomeComp)
+    .initialState(SomeComp())
     .renderBackend[Backend]
     .build
 

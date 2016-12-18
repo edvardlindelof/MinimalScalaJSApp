@@ -8,12 +8,12 @@ import scala.scalajs.js.{Array => JSArray}
 
 object D3Test {
   private val d3divUglyCustomId = "d3divUglyCustomId"
-  def apply() = component
+  def apply() = component()
   private val component = ReactComponentB[Unit]("D3Test")
     .render(_ => d3div)
-    .componentDidMount(_ => Callback{addTheD3(d3divUglyCustomId)})
+    .componentDidMount(_ => Callback(addTheD3(d3divUglyCustomId)))
     .build
-  val d3div = <.div(^.id := d3divUglyCustomId)
+  private val d3div = <.div(^.id := d3divUglyCustomId)
 
   private def addTheD3(elementId: String): Unit = {
     val graphHeight = 450
