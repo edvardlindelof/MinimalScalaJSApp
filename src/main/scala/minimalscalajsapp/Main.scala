@@ -5,7 +5,6 @@ import scala.scalajs.js.annotation.JSExport
 import org.scalajs.dom.document
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-import org.scalajs.dom.raw.Element
 
 object Main extends JSApp {
 
@@ -15,34 +14,38 @@ object Main extends JSApp {
     ReactDOM.render(RootComp(), document.getElementById("AppRoot"))
   }
 
-  // the type of our components here
-  type Comp = ReactComponentU[Unit, Unit, Unit, Element]
+  case class State(component: ReactElement)
 
-  class Backend($: BackendScope[Unit, Comp]) {
-    def changeState(s: Comp): Callback = $.setState(s)
-    def render(s: Comp) =
+  class Backend($: BackendScope[Unit, State]) {
+    def changeState(s: ReactElement): Callback = $.setState(State(s))
+    def render(p: Unit, s: State) =
       <.div(
         <.nav(
           ^.className := "navbar navbar-static-top navbar-default",
           <.ul(
             ^.className := "nav_navbar-nav",
-            MenuButton(MenuBtnProps("Comp A", SomeComp())),
-            MenuButton(MenuBtnProps("Comp B", SomeOtherComp())),
-            MenuButton(MenuBtnProps("Facade Test", FacadeTest())),
-            MenuButton(MenuBtnProps("json Editor Test", JSONEditorTest())),
-            MenuButton(MenuBtnProps("D3 Test", D3Test())))),
-        s
+            MenuButton("Comp A", SomeComp()),
+            MenuButton("Comp B", SomeOtherComp()),
+            MenuButton("Facade Test", FacadeTest()),
+            MenuButton("json Editor Test", JSONEditorTest()),
+            MenuButton("D3 Test", D3Test()))),
+        s.component
       )
-      case class MenuBtnProps(text: String, comp: Comp)
-      val MenuButton = ReactComponentB[MenuBtnProps]("MenuButton")
+
+    object MenuButton {
+      def apply(text: String, element: ReactElement): ReactElement =
+        component(MenuBtnProps(text, element))
+      case class MenuBtnProps(text: String, element: ReactElement)
+      val component = ReactComponentB[MenuBtnProps]("MenuButton")
         .render_P(p => <.li(p.text,
-                            ^.onClick --> changeState(p.comp),
+                            ^.onClick --> changeState(p.element),
                             ^.className := "btn navbar-btn"))
         .build
+    }
   }
 
   val RootComp = ReactComponentB[Unit]("Example")
-    .initialState(SomeComp())
+    .initialState(State(SomeComp()))
     .renderBackend[Backend]
     .build
 
