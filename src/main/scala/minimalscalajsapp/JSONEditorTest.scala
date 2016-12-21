@@ -30,12 +30,12 @@ object JSONEditorTest {
 
   private def addTheJSONEditor(elementId: String): Unit = {
     val editor = new JSONEditor(document.getElementById(elementId), json)
-    editor.setValue(js.Dynamic.literal("name" -> "John Smith"))
+    editor.set(js.Dynamic.literal("name" -> "John Smith"))
   }
 }
 
-// TODO facade more stuff than just setValue
+// TODO facade more stuff than just set
 @js.native
 class JSONEditor(element: Element, json: js.Object) extends js.Object {
-  def setValue(json: js.Object): Unit = js.native
+  def set(json: js.Object): Unit = js.native
 }
