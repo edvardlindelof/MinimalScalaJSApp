@@ -6,3 +6,11 @@ window.ReactDOM = ReactDOM;
 
 var JSONEditor = require('jsoneditor');
 window.JSONEditor = JSONEditor;
+require('jsoneditor/dist/jsoneditor.css');
+
+var jQuery = require('jquery');
+window.jQuery = jQuery;
+
+var bootstrap = require('bootstrap');
+window.bootstrap = bootstrap;
+require('bootstrap/dist/css/bootstrap.css');

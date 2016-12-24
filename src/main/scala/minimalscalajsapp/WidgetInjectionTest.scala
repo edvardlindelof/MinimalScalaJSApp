@@ -45,7 +45,7 @@ object WidgetInjectionTest {
   val placeholderText: String = "This is a placeholder component. " +
     "To replace it with sp-simple-widget, a component unknown to this app so far, " +
     "serve it with http-server -p 8000 --cors sp-simple-widget " +
-    "(having installed it with npm install http-server g), then press fetch."
+    "(having installed it with npm install http-server -g), then press fetch."
   val PlaceholderComp = ReactComponentB[Unit]("PlaceholderComp")
     .render(_ => <.h4(placeholderText))
     .build
