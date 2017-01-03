@@ -6,6 +6,8 @@ import org.scalajs.dom.document
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
+import MyStyles._
+
 object Main extends JSApp {
 
   @JSExport
@@ -21,9 +23,8 @@ object Main extends JSApp {
     def render(p: Unit, s: State) =
       <.div(
         <.nav(
-          ^.className := "navbar navbar-static-top navbar-default",
+          ^.className := myNavStyle.htmlClass,
           <.ul(
-            ^.className := "nav_navbar-nav",
             MenuButton("Comp A", SomeComp()),
             MenuButton("Comp B", SomeOtherComp()),
             MenuButton("Facade Test", FacadeTest()),
@@ -41,7 +42,7 @@ object Main extends JSApp {
       val component = ReactComponentB[MenuBtnProps]("MenuButton")
         .render_P(p => <.li(p.text,
                             ^.onClick --> changeState(p.element),
-                            ^.className := "btn navbar-btn"))
+                            ^.className := MyButtonStyle.htmlClass))
         .build
     }
   }
