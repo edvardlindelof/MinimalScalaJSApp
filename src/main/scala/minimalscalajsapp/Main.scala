@@ -29,7 +29,8 @@ object Main extends JSApp {
             MenuButton("Facade Test", FacadeTest()),
             MenuButton("json Editor Test", JSONEditorTest()),
             MenuButton("Widget Injection Test", WidgetInjectionTest()),
-            MenuButton("D3 Test", D3Test()))),
+            MenuButton("D3 Test", D3Test()),
+            MenuButton("CSS Test", CSSTest()))),
         s.component
       )
 
