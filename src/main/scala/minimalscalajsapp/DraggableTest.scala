@@ -16,24 +16,22 @@ object DraggableTest {
     println(text)
   )
 
-  def preventDefaultHandling(desc: String)(e: ReactEventI): Callback = {
+  def preventDefaultHandling(e: ReactEventI): Callback = {
     // this needs to be called by onDragOver for onDrop to work.
     // the internet said so
     Callback(e.preventDefault())
   }
 
-  def dragWithData(desc: String)(data: String)(e: ReactEventI): Callback = {
+  def dragWithData(e: ReactDragEvent): Callback = {
     Callback({
-      println(desc)
-      println(data) // prints the extra data included
-      console.log(e.target) // prints the html element of the target
+      println("F: onDragStart")
+      e.dataTransfer.setData("json", "hello i am a data")
     })
   }
 
-  def onDrop(desc: String)(e: ReactEventI): Callback = {
+  def onDrop(e: ReactDragEvent): Callback = {
     Callback({
-      println(desc)
-      console.log(e.target) // prints the html of the target
+      console.log(e.dataTransfer.getData("json")) // prints the html of the target
     })
   }
 
@@ -50,10 +48,9 @@ object DraggableTest {
     ),
 
     <.div(
-      ^.onDragOver ==> preventDefaultHandling("C: onDragOver"),
       ^.onDragEnter --> say("C: onDragEnter"),
       ^.onDragLeave --> say("C: onDragLeave"),
-      ^.onDrop ==> onDrop("C: onDrop"),
+      ^.onDrop ==> onDrop,
       "C: i am a drop zone"
     ),
 
@@ -71,7 +68,7 @@ object DraggableTest {
     
     <.div(
       ^.draggable:="True",
-      ^.onDragStart ==> dragWithData("F: onDrag")("F was selected"),
+      ^.onDragStart ==> dragWithData,
       "F: My data is included when dragging"
     )
   )
