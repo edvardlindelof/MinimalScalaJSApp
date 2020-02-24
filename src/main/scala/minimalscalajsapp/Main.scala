@@ -33,7 +33,6 @@ object Main extends JSApp {
               MenuButton("Comp B", SomeOtherComp()),
               MenuButton("Facade Test", FacadeTest()),
               MenuButton("json Editor Test", JSONEditorTest()),
-              MenuButton("Widget Injection Test", WidgetInjectionTest()),
               MenuButton("D3 Test", D3Test()),
               MenuButton("CSS Test", CSSTest()),
               MenuButton("Draggable Test", DraggableTest())
